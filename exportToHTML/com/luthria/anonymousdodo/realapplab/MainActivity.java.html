@@ -1,0 +1,187 @@
+<html>
+<head>
+<title>MainActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(106,135,89); }
+.s3 { color: rgb(104,151,187); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+MainActivity.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">com.luthria.anonymousdodo.realapplab</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">import </span><span class="s1">android.content.Intent</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.content.res.AssetManager</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.graphics.Color</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.graphics.Typeface</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.os.Bundle</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.support.design.widget.FloatingActionButton</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.support.v7.app.AppCompatActivity</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.view.Gravity</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.view.MotionEvent</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.view.View</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.widget.TableLayout</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.widget.TableRow</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.widget.TextView</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.widget.Toast</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.ArrayList</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">java.util.Locale</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">public class </span><span class="s1">MainActivity </span><span class="s0">extends </span><span class="s1">AppCompatActivity { 
+ 
+</span><span class="s0">public static </span><span class="s1">ArrayList&lt;Class&gt; classes = </span><span class="s0">new </span><span class="s1">ArrayList&lt;Class&gt;()</span><span class="s0">;</span><span class="s1"> 
+    Typeface typeface</span><span class="s0">;</span><span class="s1"> 
+    @Override 
+    </span><span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) { 
+        setTitle(</span><span class="s2">&quot;Howard County GPA Calculator&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">super</span><span class="s1">.onCreate(savedInstanceState)</span><span class="s0">;</span><span class="s1"> 
+        setContentView(R.layout.activity_main)</span><span class="s0">;</span><span class="s1"> 
+        AssetManager am = getApplicationContext().getAssets()</span><span class="s0">;</span><span class="s1"> 
+ 
+        typeface = Typeface.createFromAsset(am</span><span class="s0">,</span><span class="s1"> 
+                String.format(Locale.US</span><span class="s0">, </span><span class="s2">&quot;fonts/%s&quot;</span><span class="s0">, </span><span class="s2">&quot;Font.ttf&quot;</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+ 
+        init()</span><span class="s0">;</span><span class="s1"> 
+ 
+        TextView tV = (TextView) findViewById(R.id.textView7)</span><span class="s0">;</span><span class="s1"> 
+        tV.setText(</span><span class="s2">&quot;Hold each button to see what it does&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        tV.setTypeface(typeface)</span><span class="s0">;</span><span class="s1"> 
+ 
+ 
+ 
+        FloatingActionButton delete = (FloatingActionButton) findViewById(R.id.deleteClass)</span><span class="s0">;</span><span class="s1"> 
+        delete.setOnTouchListener(</span><span class="s0">new </span><span class="s1">View.OnTouchListener() { 
+ 
+            @Override 
+            </span><span class="s0">public boolean </span><span class="s1">onTouch(View v</span><span class="s0">, </span><span class="s1">MotionEvent event) { 
+                </span><span class="s0">if </span><span class="s1">(event.getAction() == MotionEvent.ACTION_DOWN ) { 
+                    </span><span class="s0">return </span><span class="s1">shToast(</span><span class="s2">&quot;Release To Delete A Class&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+ 
+                } 
+                </span><span class="s0">else if</span><span class="s1">(event.getAction() == MotionEvent.ACTION_UP){ 
+                    onDelete(v)</span><span class="s0">;</span><span class="s1"> 
+ 
+                } 
+ 
+                </span><span class="s0">return false;</span><span class="s1"> 
+            } 
+        })</span><span class="s0">;</span><span class="s1"> 
+ 
+ 
+        FloatingActionButton add = (FloatingActionButton) findViewById(R.id.addClass)</span><span class="s0">;</span><span class="s1"> 
+        add.setOnTouchListener(</span><span class="s0">new </span><span class="s1">View.OnTouchListener() { 
+ 
+            @Override 
+            </span><span class="s0">public boolean </span><span class="s1">onTouch(View v</span><span class="s0">, </span><span class="s1">MotionEvent event) { 
+                </span><span class="s0">if </span><span class="s1">(event.getAction() == MotionEvent.ACTION_DOWN ) { 
+                    </span><span class="s0">return </span><span class="s1">shToast(</span><span class="s2">&quot;Release To Add A Class&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+ 
+                } 
+                </span><span class="s0">else if</span><span class="s1">(event.getAction() == MotionEvent.ACTION_UP){ 
+                    onAddClick(v)</span><span class="s0">;</span><span class="s1"> 
+ 
+                } 
+ 
+                </span><span class="s0">return false;</span><span class="s1"> 
+            } 
+        })</span><span class="s0">;</span><span class="s1"> 
+ 
+        FloatingActionButton get = (FloatingActionButton) findViewById(R.id.calcGPA)</span><span class="s0">;</span><span class="s1"> 
+        get.setOnTouchListener(</span><span class="s0">new </span><span class="s1">View.OnTouchListener() { 
+ 
+            @Override 
+            </span><span class="s0">public boolean </span><span class="s1">onTouch(View v</span><span class="s0">, </span><span class="s1">MotionEvent event) { 
+                </span><span class="s0">if </span><span class="s1">(event.getAction() == MotionEvent.ACTION_DOWN ) { 
+                  </span><span class="s0">return </span><span class="s1">shToast(</span><span class="s2">&quot;Release for GPA&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+                } 
+                </span><span class="s0">else if</span><span class="s1">(event.getAction() == MotionEvent.ACTION_UP){ 
+                    getGPA(v)</span><span class="s0">;</span><span class="s1"> 
+ 
+                } 
+ 
+                </span><span class="s0">return false;</span><span class="s1"> 
+            } 
+        })</span><span class="s0">;</span><span class="s1"> 
+ 
+    } 
+ 
+    </span><span class="s0">public boolean </span><span class="s1">shToast(String text){ 
+        Toast toast = Toast.makeText(getApplicationContext()</span><span class="s0">, </span><span class="s1">text</span><span class="s0">, </span><span class="s1">Toast.LENGTH_SHORT)</span><span class="s0">;</span><span class="s1"> 
+        toast.show()</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">return true;</span><span class="s1"> 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">onAddClick(View v){ 
+        startActivity(</span><span class="s0">new </span><span class="s1">Intent(MainActivity.</span><span class="s0">this, </span><span class="s1">AddClass.</span><span class="s0">class</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+    } 
+    </span><span class="s0">public void </span><span class="s1">getGPA(View v){ 
+        startActivity(</span><span class="s0">new </span><span class="s1">Intent(MainActivity.</span><span class="s0">this, </span><span class="s1">GetGPA.</span><span class="s0">class</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+ 
+    } 
+    </span><span class="s0">public void </span><span class="s1">onDelete(View v){ 
+        startActivity(</span><span class="s0">new </span><span class="s1">Intent(MainActivity.</span><span class="s0">this, </span><span class="s1">DeleteClass.</span><span class="s0">class</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+ 
+    } 
+    </span><span class="s0">public void </span><span class="s1">init() { 
+        TableLayout stk = (TableLayout) findViewById(R.id.table_main)</span><span class="s0">;</span><span class="s1"> 
+        TableRow tbrow0 = </span><span class="s0">new </span><span class="s1">TableRow(</span><span class="s0">this</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        TextView tv0 = </span><span class="s0">new </span><span class="s1">TextView(</span><span class="s0">this</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        tv0.setTypeface(typeface)</span><span class="s0">;</span><span class="s1"> 
+        tv0.setText(</span><span class="s2">&quot; Class &quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        tv0.setTextColor(Color.parseColor(</span><span class="s2">&quot;#3507C8&quot;</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+        tbrow0.addView(tv0)</span><span class="s0">;</span><span class="s1"> 
+        TextView tv1 = </span><span class="s0">new </span><span class="s1">TextView(</span><span class="s0">this</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        tv1.setText(</span><span class="s2">&quot; Weight &quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        tv1.setTypeface(typeface)</span><span class="s0">;</span><span class="s1"> 
+ 
+        tv1.setTextColor(Color.parseColor(</span><span class="s2">&quot;#3507C8&quot;</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+        tbrow0.addView(tv1)</span><span class="s0">;</span><span class="s1"> 
+        TextView tv2 = </span><span class="s0">new </span><span class="s1">TextView(</span><span class="s0">this</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        tv2.setText(</span><span class="s2">&quot; Grade &quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        tv2.setTextColor(Color.parseColor(</span><span class="s2">&quot;#3507C8&quot;</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+        tv2.setTypeface(typeface)</span><span class="s0">;</span><span class="s1"> 
+ 
+        tbrow0.addView(tv2)</span><span class="s0">;</span><span class="s1"> 
+        stk.addView(tbrow0)</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s3">0</span><span class="s0">; </span><span class="s1">i &lt; classes.size()</span><span class="s0">; </span><span class="s1">i++) { 
+            TableRow tbrow = </span><span class="s0">new </span><span class="s1">TableRow(</span><span class="s0">this</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+            TextView t1v = </span><span class="s0">new </span><span class="s1">TextView(</span><span class="s0">this</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+            t1v.setTypeface(typeface)</span><span class="s0">;</span><span class="s1"> 
+ 
+            t1v.setText(classes.get(i).getName() + </span><span class="s2">&quot;    &quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+            t1v.setTextColor(Color.parseColor(</span><span class="s2">&quot;#3507C8&quot;</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+            t1v.setGravity(Gravity.CENTER)</span><span class="s0">;</span><span class="s1"> 
+            tbrow.addView(t1v)</span><span class="s0">;</span><span class="s1"> 
+            TextView t2v = </span><span class="s0">new </span><span class="s1">TextView(</span><span class="s0">this</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+            t2v.setText(classes.get(i).getType() +</span><span class="s2">&quot;    &quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+            t2v.setTextColor(Color.parseColor(</span><span class="s2">&quot;#3507C8&quot;</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+            t2v.setTypeface(typeface)</span><span class="s0">;</span><span class="s1"> 
+ 
+            t2v.setGravity(Gravity.CENTER)</span><span class="s0">;</span><span class="s1"> 
+            tbrow.addView(t2v)</span><span class="s0">;</span><span class="s1"> 
+            TextView t3v = </span><span class="s0">new </span><span class="s1">TextView(</span><span class="s0">this</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+            t3v.setText(classes.get(i).getLetter() +</span><span class="s2">&quot;    &quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+            t3v.setTextColor(Color.parseColor(</span><span class="s2">&quot;#3507C8&quot;</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+            t3v.setTypeface(typeface)</span><span class="s0">;</span><span class="s1"> 
+ 
+            t3v.setGravity(Gravity.CENTER)</span><span class="s0">;</span><span class="s1"> 
+            tbrow.addView(t3v)</span><span class="s0">;</span><span class="s1"> 
+            stk.addView(tbrow)</span><span class="s0">;</span><span class="s1"> 
+        } 
+ 
+    } 
+ 
+} 
+</span></pre>
+</body>
+</html>
